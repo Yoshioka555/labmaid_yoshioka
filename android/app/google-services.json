@@ -1,0 +1,29 @@
+{
+  "project_info": {
+    "project_number": "357984166913",
+    "project_id": "labmaid-fastapi-auth",
+    "storage_bucket": "labmaid-fastapi-auth.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:357984166913:android:9824fb87c9b618e7400c00",
+        "android_client_info": {
+          "package_name": "com.example.labmaidfastapi"
+        }
+      },
+      "oauth_client": [],
+      "api_key": [
+        {
+          "current_key": "AIzaSyAwPV2LcuzDfro8liKbqvA04u8DwvYu4CQ"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": []
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
