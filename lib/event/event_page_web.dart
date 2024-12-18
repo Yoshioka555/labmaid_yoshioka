@@ -6,6 +6,9 @@ import '../geo_location/location_member_index.dart';
 import '../header_footer_drawer/drawer.dart';
 import 'index/event_index_page_web.dart';
 
+//変更点
+//コピペで
+
 //Web用のイベント管理ページのUI
 
 class EventPageWeb extends StatelessWidget {
@@ -16,10 +19,16 @@ class EventPageWeb extends StatelessWidget {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        backgroundColor: Colors.purple.withOpacity(0.4),
+        backgroundColor: Colors.purple[100],
         elevation: 0,
         centerTitle: false,
-        title: const DoorStatusAppbar(),
+        title: const Row(
+          mainAxisAlignment: MainAxisAlignment.spaceBetween,
+          children: [
+            Text('Event Management'),
+            DoorStatusAppbar(),
+          ],
+        ),
         actions: [
           Padding(
             padding: const EdgeInsets.all(4.0),

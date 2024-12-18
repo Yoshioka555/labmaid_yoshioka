@@ -9,6 +9,9 @@ import '../header_footer_drawer/drawer.dart';
 import 'index/attendance_index_page_week.dart';
 import 'user_management/attendance_management_page.dart';
 
+//変更点
+//コピペで
+
 class AttendanceHomePage extends StatefulWidget {
   const AttendanceHomePage({
     Key? key,
@@ -35,6 +38,7 @@ class _AttendanceHomePageState extends State<AttendanceHomePage> {
       length: 4,
       child: Scaffold(
         appBar: AppBar(
+          backgroundColor: Colors.green[100],
           actions: [
             Padding(
               padding: const EdgeInsets.all(4.0),

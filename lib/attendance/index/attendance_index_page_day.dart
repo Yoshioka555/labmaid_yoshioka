@@ -11,6 +11,9 @@ import '../../domain/attendance_data.dart';
 import '../../network/url.dart';
 import '../update/attendance_update_page.dart';
 
+//変更点
+//コピペ
+
 class AttendanceIndexPageDay extends StatefulWidget {
   const AttendanceIndexPageDay({Key? key}) : super(key: key);
 
@@ -196,6 +199,7 @@ class _AttendanceIndexPageDayState extends State<AttendanceIndexPageDay> {
   }
 
 //ダミーデータ
+  /*
   void _loadDummyData() {
     setState(() {
       attendances = [
@@ -301,11 +305,12 @@ class _AttendanceIndexPageDayState extends State<AttendanceIndexPageDay> {
       ];
     });
   }
+  */
 
   Future<void> _fetchAttendance() async {
     //ダミーデータを参照
-    _loadDummyData();
-    /*
+    //_loadDummyData();
+
     var uri = Uri.parse('${httpUrl}attendances');
 
     // GETリクエストを送信
@@ -330,7 +335,6 @@ class _AttendanceIndexPageDayState extends State<AttendanceIndexPageDay> {
       // リクエストが失敗した場合の処理
       print('リクエストが失敗しました: ${response.statusCode}');
     }
-    */
   }
 
   Future<void> _fetchMyUserData() async {
@@ -705,7 +709,7 @@ class _AttendanceIndexPageDayState extends State<AttendanceIndexPageDay> {
 
   Color _isTitleToColorBox(String title) {
     if (title == '遅刻') {
-      return Colors.amber.withOpacity(0.4);
+      return Colors.orange.withOpacity(0.4);
     } else if (title == '欠席') {
       return Colors.red.withOpacity(0.4);
     } else {

@@ -5,7 +5,7 @@ import '../../geo_location/location_member_index.dart';
 import '../../header_footer_drawer/drawer.dart';
 import 'event_index_page_web.dart';
 
-//モバイル版イベントページ
+//仮
 
 class EventPageMobile extends StatelessWidget {
   const EventPageMobile({super.key});

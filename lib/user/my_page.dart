@@ -54,7 +54,9 @@ class _MyPageState extends State<MyPage> {
               ),
             ),
           ],
-          backgroundColor: Colors.lightGreen.shade700,
+          //変更点
+          //backgroundColorをpinkに
+          backgroundColor: Colors.pink[200],
           iconTheme: const IconThemeData(
             color: Colors.white,
           ),

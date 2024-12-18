@@ -7,8 +7,8 @@ import '../../domain/user_data.dart';
 import '../../network/url.dart';
 
 //変更点
-//変更点が多いのでこのページはそのままコピペしてください
-//Web版、イベントページ&アテンダンスページで右側に表示する出席状態ページ
+//このページはそのままコピペしてください
+//このページは、Web版のイベントページ&アテンダンスページで右側に表示する出席状態ページ
 
 class AttendanceManagementPageWeb extends StatefulWidget {
   const AttendanceManagementPageWeb({Key? key}) : super(key: key);
@@ -284,8 +284,7 @@ class _AttendanceManagementPageWeb extends State<AttendanceManagementPageWeb> {
                                   .showSnackBar(snackBar);
                             },
                             style: ElevatedButton.styleFrom(
-                              foregroundColor: Colors.white,
-                              backgroundColor: Colors.green[400],
+                              backgroundColor: Colors.green.withOpacity(0.8),
                             ),
                             child: const FittedBox(
                               child: Text(
@@ -318,8 +317,7 @@ class _AttendanceManagementPageWeb extends State<AttendanceManagementPageWeb> {
                                   .showSnackBar(snackBar);
                             },
                             style: ElevatedButton.styleFrom(
-                              foregroundColor: Colors.white,
-                              backgroundColor: Colors.yellow,
+                              backgroundColor: Colors.yellow.withOpacity(0.8),
                             ),
                             child: const FittedBox(
                               child: Text(
@@ -352,8 +350,7 @@ class _AttendanceManagementPageWeb extends State<AttendanceManagementPageWeb> {
                                   .showSnackBar(snackBar);
                             },
                             style: ElevatedButton.styleFrom(
-                              foregroundColor: Colors.white,
-                              backgroundColor: Colors.grey,
+                              backgroundColor: Colors.grey.withOpacity(0.8),
                             ),
                             child: const FittedBox(
                               child: Text(
@@ -396,8 +393,7 @@ class _AttendanceManagementPageWeb extends State<AttendanceManagementPageWeb> {
                                   .showSnackBar(snackBar);
                             },
                             style: ElevatedButton.styleFrom(
-                              foregroundColor: Colors.white,
-                              backgroundColor: Colors.red,
+                              backgroundColor: Colors.red.withOpacity(0.8),
                             ),
                             child: const FittedBox(
                               child: Text(
@@ -429,8 +425,7 @@ class _AttendanceManagementPageWeb extends State<AttendanceManagementPageWeb> {
                                   .showSnackBar(snackBar);
                             },
                             style: ElevatedButton.styleFrom(
-                              foregroundColor: Colors.white,
-                              backgroundColor: Colors.blue,
+                              backgroundColor: Colors.blue.withOpacity(0.8),
                             ),
                             child: const FittedBox(
                               child: Text(
@@ -463,8 +458,7 @@ class _AttendanceManagementPageWeb extends State<AttendanceManagementPageWeb> {
                                   .showSnackBar(snackBar);
                             },
                             style: ElevatedButton.styleFrom(
-                              foregroundColor: Colors.white,
-                              backgroundColor: Colors.purple,
+                              backgroundColor: Colors.purple.withOpacity(0.8),
                             ),
                             child: const FittedBox(
                               child: Text(

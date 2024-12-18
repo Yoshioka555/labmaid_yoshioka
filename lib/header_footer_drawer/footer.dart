@@ -7,6 +7,9 @@ import '../attendance/attendance_page_responsive.dart';
 import '../event/event_responsive_page.dart';
 import '../user/my_page.dart';
 
+//変更点
+//コピペで
+
 class Footer extends StatefulWidget {
 
   final int pageNumber;
@@ -42,12 +45,12 @@ class _FooterState extends State<Footer> {
 
   //アイコンや文字列のカラー
   final List<Color?> _footerItemColor = [
-    Colors.purple[200],
+    Colors.purple[300],
     Colors.green[300],
-    Colors.orange,
-    Colors.blue.shade800,
-    Colors.teal,
-    Colors.lightGreen.shade700,
+    Colors.orange[300],
+    Colors.blue[300],
+    Colors.teal[300],
+    Colors.pink[200],
   ];
 
   final _routes = [

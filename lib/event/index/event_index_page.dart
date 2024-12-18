@@ -17,16 +17,15 @@ import '../../header_footer_drawer/drawer.dart';
 import '../../network/url.dart';
 import '../create/event_create_dialog.dart';
 
+//変更点
+//このページはコピペで
 
 class EventIndexPage extends StatefulWidget {
-
   const EventIndexPage({Key? key}) : super(key: key);
-
 
   @override
   _EventIndexPageState createState() => _EventIndexPageState();
 }
-
 
 class _EventIndexPageState extends State<EventIndexPage> {
   final CalendarController _controller = CalendarController();
@@ -47,7 +46,7 @@ class _EventIndexPageState extends State<EventIndexPage> {
   DateTime today = DateTime.now();
 
   CalendarHeaderStyle headerStyle(DateTime date) {
-    if(date.month == 1) {
+    if (date.month == 1) {
       return const CalendarHeaderStyle(
         textAlign: TextAlign.center,
         backgroundColor: Colors.blue,
@@ -95,7 +94,7 @@ class _EventIndexPageState extends State<EventIndexPage> {
           fontWeight: FontWeight.w500,
         ),
       );
-    } else if(date.month == 5) {
+    } else if (date.month == 5) {
       return CalendarHeaderStyle(
         textAlign: TextAlign.center,
         backgroundColor: Colors.lightGreenAccent.shade700,
@@ -107,7 +106,7 @@ class _EventIndexPageState extends State<EventIndexPage> {
           fontWeight: FontWeight.w500,
         ),
       );
-    } else if(date.month == 6) {
+    } else if (date.month == 6) {
       return const CalendarHeaderStyle(
         textAlign: TextAlign.center,
         backgroundColor: Colors.amber,
@@ -119,7 +118,7 @@ class _EventIndexPageState extends State<EventIndexPage> {
           fontWeight: FontWeight.w500,
         ),
       );
-    } else if(date.month == 7) {
+    } else if (date.month == 7) {
       return const CalendarHeaderStyle(
         textAlign: TextAlign.center,
         backgroundColor: Colors.orange,
@@ -177,8 +176,7 @@ class _EventIndexPageState extends State<EventIndexPage> {
             letterSpacing: 5,
             color: Colors.white,
             fontWeight: FontWeight.w500,
-          )
-      );
+          ));
     } else {
       return const CalendarHeaderStyle(
           textAlign: TextAlign.center,
@@ -189,13 +187,16 @@ class _EventIndexPageState extends State<EventIndexPage> {
             letterSpacing: 5,
             color: Colors.white,
             fontWeight: FontWeight.w500,
-          )
-      );
+          ));
     }
   }
 
   void _goToToday() {
-    _controller.displayDate = DateTime(today.year, today.month, 1,);
+    _controller.displayDate = DateTime(
+      today.year,
+      today.month,
+      1,
+    );
   }
 
   void _goToSelectedYearMonth(int year, int month) {
@@ -204,9 +205,12 @@ class _EventIndexPageState extends State<EventIndexPage> {
 
   @override
   void initState() {
-    _controller.displayDate = DateTime(today.year, today.month, 1, 0,0,0,0,0);
-    _controllerWeek.displayDate = DateTime(today.year, today.month, today.day, 0, 0, 0, 0);
-    _controllerDay.displayDate = DateTime(today.year, today.month, today.day,0,0,0,0);
+    _controller.displayDate =
+        DateTime(today.year, today.month, 1, 0, 0, 0, 0, 0);
+    _controllerWeek.displayDate =
+        DateTime(today.year, today.month, today.day, 0, 0, 0, 0);
+    _controllerDay.displayDate =
+        DateTime(today.year, today.month, today.day, 0, 0, 0, 0);
     _headerStyle = headerStyle(DateTime.now());
     _fetchEvent();
     _fetchMyUserData();
@@ -238,7 +242,8 @@ class _EventIndexPageState extends State<EventIndexPage> {
       // 必要なデータを取得
       if (mounted) {
         setState(() {
-          events = body.map((dynamic json) => EventData.fromJson(json)).toList();
+          events =
+              body.map((dynamic json) => EventData.fromJson(json)).toList();
         });
       }
 
@@ -286,7 +291,8 @@ class _EventIndexPageState extends State<EventIndexPage> {
     SchedulerBinding.instance.addPersistentFrameCallback((duration) {
       if (!mounted) return; // ウィジェットがマウントされているか確認
       if (_isDisposed) return; // フラグをチェック
-      var midDate = viewChangedDetails.visibleDates[viewChangedDetails.visibleDates.length ~/ 2];
+      var midDate = viewChangedDetails
+          .visibleDates[viewChangedDetails.visibleDates.length ~/ 2];
       setState(() {
         _headerStyle = headerStyle(midDate);
       });
@@ -298,7 +304,6 @@ class _EventIndexPageState extends State<EventIndexPage> {
       Uri.parse('${wsUrl}ws_event_list'),
     );
     _channel.stream.listen((message) {
-
       // JSONデータをデコード
       var messageData = jsonDecode(message);
       if (messageData['action'] == 'create') {
@@ -312,7 +317,7 @@ class _EventIndexPageState extends State<EventIndexPage> {
           events.removeWhere((event) => event.id == messageData['id']);
         });
       } else if (messageData['action'] == 'update') {
-        for (int i=0; i<events.length; i++) {
+        for (int i = 0; i < events.length; i++) {
           if (events[i].id == messageData['id']) {
             setState(() {
               events[i].title = messageData['title'] as String;
@@ -336,6 +341,7 @@ class _EventIndexPageState extends State<EventIndexPage> {
       child: Scaffold(
         appBar: AppBar(
           toolbarHeight: 50.0,
+          backgroundColor: Colors.purple[100],
           actions: [
             Padding(
               padding: const EdgeInsets.all(4.0),
@@ -369,14 +375,19 @@ class _EventIndexPageState extends State<EventIndexPage> {
           title: const DoorStatusAppbar(),
           bottom: const TabBar(
             tabs: <Tab>[
-              Tab(text: 'Month',),
-              Tab(text: 'Week',),
-              Tab(text: 'Day',),
+              Tab(
+                text: 'Month',
+              ),
+              Tab(
+                text: 'Week',
+              ),
+              Tab(
+                text: 'Day',
+              ),
             ],
           ),
         ),
         drawer: const UserDrawer(),
-
         body: TabBarView(
           children: [
             SingleChildScrollView(
@@ -455,8 +466,7 @@ class _EventIndexPageState extends State<EventIndexPage> {
                                     setState(() {
                                       selectedYear = text!;
                                     });
-                                  }
-                              ),
+                                  }),
                             ),
                           ),
                           Expanded(
@@ -518,8 +528,7 @@ class _EventIndexPageState extends State<EventIndexPage> {
                                     setState(() {
                                       selectedMonth = text!;
                                     });
-                                  }
-                              ),
+                                  }),
                             ),
                           ),
                           Expanded(
@@ -527,7 +536,8 @@ class _EventIndexPageState extends State<EventIndexPage> {
                               padding: const EdgeInsets.all(4.0),
                               child: ElevatedButton(
                                 onPressed: () {
-                                  _goToSelectedYearMonth(selectedYear, selectedMonth);
+                                  _goToSelectedYearMonth(
+                                      selectedYear, selectedMonth);
                                 },
                                 child: const Text('移動'),
                               ),
@@ -544,7 +554,9 @@ class _EventIndexPageState extends State<EventIndexPage> {
                         await Navigator.push(
                           context,
                           MaterialPageRoute(
-                            builder: (context) => CreateEventPage(selectedDate: details.date!,),
+                            builder: (context) => CreateEventPage(
+                              selectedDate: details.date!,
+                            ),
                             fullscreenDialog: true,
                           ),
                         );
@@ -580,14 +592,17 @@ class _EventIndexPageState extends State<EventIndexPage> {
                       ),
                       appointmentBuilder: (BuildContext context,
                           CalendarAppointmentDetails details) {
-                        final EventData appointment = details.appointments.first;
+                        final EventData appointment =
+                            details.appointments.first;
                         return GestureDetector(
                           onTap: () async {
                             await Navigator.push(
                               context,
                               MaterialPageRoute(
-                                builder: (context) =>
-                                    UpdateEventPage(event: appointment,content: titleToContent(appointment.title),),
+                                builder: (context) => UpdateEventPage(
+                                  event: appointment,
+                                  content: titleToContent(appointment.title),
+                                ),
                                 fullscreenDialog: true,
                               ),
                             );
@@ -599,36 +614,42 @@ class _EventIndexPageState extends State<EventIndexPage> {
                             ),
                             richMessage: WidgetSpan(
                                 child: Column(
-                                  crossAxisAlignment: CrossAxisAlignment.start,
-                                  children: [
-                                    Text(
-                                      _titleToolchip(appointment.title, appointment.unit),
-                                      style: const TextStyle(
-                                        fontSize: 14,
-                                        color: Colors.white,
-                                      ),
-                                    ),
-                                    Text('詳細：${appointment.description}',
-                                      style: const TextStyle(
-                                        fontSize: 14,
-                                        color: Colors.white,
-                                      ),
-                                    ),
-                                  ],
-                                )),
+                              crossAxisAlignment: CrossAxisAlignment.start,
+                              children: [
+                                Text(
+                                  _titleToolchip(
+                                      appointment.title, appointment.unit),
+                                  style: const TextStyle(
+                                    fontSize: 14,
+                                    color: Colors.white,
+                                  ),
+                                ),
+                                Text(
+                                  '詳細：${appointment.description}',
+                                  style: const TextStyle(
+                                    fontSize: 14,
+                                    color: Colors.white,
+                                  ),
+                                ),
+                              ],
+                            )),
                             child: Container(
                               decoration: BoxDecoration(
-                                color: _isTitleToColorBox(appointment.title, appointment.unit),
+                                color: _isTitleToColorBox(
+                                    appointment.title, appointment.unit),
                                 borderRadius: BorderRadius.circular(5),
                                 border: Border.all(
-                                  color: _isTitleToColorBorder(appointment.title, appointment.unit),
+                                  color: _isTitleToColorBorder(
+                                      appointment.title, appointment.unit),
                                   width: 1.0,
                                 ),
                               ),
                               alignment: Alignment.centerLeft,
                               child: Padding(
                                 padding: const EdgeInsets.only(left: 2.0),
-                                child: Text(displayTitle(appointment.title, appointment.unit, appointment.start),
+                                child: Text(
+                                  displayTitle(appointment.title,
+                                      appointment.unit, appointment.start),
                                   style: const TextStyle(
                                     color: Colors.black,
                                     fontSize: 12,
@@ -639,39 +660,45 @@ class _EventIndexPageState extends State<EventIndexPage> {
                           ),
                         );
                       },
-                      monthCellBuilder: (BuildContext context, MonthCellDetails details) {
+                      monthCellBuilder:
+                          (BuildContext context, MonthCellDetails details) {
                         return Container(
                           alignment: Alignment.topCenter,
                           decoration: BoxDecoration(
                               color: _getCellColor(details.date),
-                              border: Border.all(color: Colors.grey, width: 0.2)
-                          ),
-                          child: DateTime(details.date.year, details.date.month, details.date.day) == DateTime(today.year, today.month, today.day)
+                              border:
+                                  Border.all(color: Colors.grey, width: 0.2)),
+                          child: DateTime(details.date.year, details.date.month,
+                                      details.date.day) ==
+                                  DateTime(today.year, today.month, today.day)
                               ? Container(
-                            decoration: const BoxDecoration(
-                              shape: BoxShape.circle,
-                              color: Colors.indigo,
-                            ),
-                            height: 25,
-                            width: 25,
-                            alignment: Alignment.center,
-                            child: Text(
-                              details.date.day.toString(),
-                              style: const TextStyle(color: Colors.white),
-                            ),
-                          )
+                                  decoration: const BoxDecoration(
+                                    shape: BoxShape.circle,
+                                    color: Colors.indigo,
+                                  ),
+                                  height: 25,
+                                  width: 25,
+                                  alignment: Alignment.center,
+                                  child: Text(
+                                    details.date.day.toString(),
+                                    style: const TextStyle(color: Colors.white),
+                                  ),
+                                )
                               : Text(
-                            details.date.day.toString(),
-                            style: TextStyle(color: _getTextColor(details.date)),
-                          ),
+                                  details.date.day.toString(),
+                                  style: TextStyle(
+                                      color: _getTextColor(details.date)),
+                                ),
                         );
                       },
                       monthViewSettings: const MonthViewSettings(
-                        numberOfWeeksInView: 6, // 表示する週の数
+                        numberOfWeeksInView: 6,
+                        // 表示する週の数
                         agendaItemHeight: 40,
                         appointmentDisplayCount: 7,
                         showAgenda: true,
-                        appointmentDisplayMode: MonthAppointmentDisplayMode.appointment,
+                        appointmentDisplayMode:
+                            MonthAppointmentDisplayMode.appointment,
                         monthCellStyle: MonthCellStyle(
                           backgroundColor: Colors.white,
                         ),
@@ -722,14 +749,18 @@ class _EventIndexPageState extends State<EventIndexPage> {
                       ),
                       appointmentBuilder: (BuildContext context,
                           CalendarAppointmentDetails details) {
-                        final EventData appointment = details.appointments.first;
-                        final bool isTimeslotAppointment = _isTimeslotAppointmentView(
-                            appointment, _controllerWeek.view);
-                        final bool isStartAppointment = !isTimeslotAppointment &&
-                            _isStartOfAppointmentView(appointment, details.date);
+                        final EventData appointment =
+                            details.appointments.first;
+                        final bool isTimeslotAppointment =
+                            _isTimeslotAppointmentView(
+                                appointment, _controllerWeek.view);
+                        final bool isStartAppointment =
+                            !isTimeslotAppointment &&
+                                _isStartOfAppointmentView(
+                                    appointment, details.date);
                         final bool isEndAppointment = !isTimeslotAppointment &&
-                            _isEndOfAppointmentView(
-                                appointment, details.date, _controllerWeek.view);
+                            _isEndOfAppointmentView(appointment, details.date,
+                                _controllerWeek.view);
                         return GestureDetector(
                           onTap: () async {
                             await Navigator.push(
@@ -737,8 +768,7 @@ class _EventIndexPageState extends State<EventIndexPage> {
                               MaterialPageRoute(
                                 builder: (context) => UpdateEventPage(
                                   event: appointment,
-                                  content:
-                                  titleToContent(appointment.title),
+                                  content: titleToContent(appointment.title),
                                 ),
                                 fullscreenDialog: true,
                               ),
@@ -756,26 +786,31 @@ class _EventIndexPageState extends State<EventIndexPage> {
                             ),
                             richMessage: WidgetSpan(
                                 child: Column(
-                                  crossAxisAlignment: CrossAxisAlignment.start,
-                                  children: [
-                                    Text(
-                                      _titleToolchip(appointment.title, appointment.unit),
-                                      style: const TextStyle(
-                                        fontSize: 14,
-                                        color: Colors.white,
-                                      ),
-                                    ),
-                                    Text('詳細：${appointment.description}',
-                                      style: const TextStyle(
-                                        fontSize: 14,
-                                        color: Colors.white,
-                                      ),
-                                    ),
-                                  ],
-                                )),
+                              crossAxisAlignment: CrossAxisAlignment.start,
+                              children: [
+                                Text(
+                                  _titleToolchip(
+                                      appointment.title, appointment.unit),
+                                  style: const TextStyle(
+                                    fontSize: 14,
+                                    color: Colors.white,
+                                  ),
+                                ),
+                                Text(
+                                  '詳細：${appointment.description}',
+                                  style: const TextStyle(
+                                    fontSize: 14,
+                                    color: Colors.white,
+                                  ),
+                                ),
+                              ],
+                            )),
                             child: Container(
-                              margin: EdgeInsets.fromLTRB(isStartAppointment ? 0 : 0, 0,
-                                  isEndAppointment ? 0 : 0, 0),
+                              margin: EdgeInsets.fromLTRB(
+                                  isStartAppointment ? 0 : 0,
+                                  0,
+                                  isEndAppointment ? 0 : 0,
+                                  0),
                               decoration: BoxDecoration(
                                 color: _isTitleToColorBox(
                                     appointment.title, appointment.unit),
@@ -789,8 +824,9 @@ class _EventIndexPageState extends State<EventIndexPage> {
                               alignment: Alignment.centerLeft,
                               child: Padding(
                                 padding: const EdgeInsets.only(left: 2.0),
-                                child: Text(displayTitle(appointment.title,
-                                    appointment.unit, appointment.start),
+                                child: Text(
+                                  displayTitle(appointment.title,
+                                      appointment.unit, appointment.start),
                                   style: const TextStyle(
                                     color: Colors.black,
                                     fontSize: 12,
@@ -801,7 +837,6 @@ class _EventIndexPageState extends State<EventIndexPage> {
                           ),
                         );
                       },
-
                     ),
                   ),
                 ],
@@ -835,11 +870,15 @@ class _EventIndexPageState extends State<EventIndexPage> {
                       ),
                       appointmentBuilder: (BuildContext context,
                           CalendarAppointmentDetails details) {
-                        final EventData appointment = details.appointments.first;
-                        final bool isTimeslotAppointment = _isTimeslotAppointmentView(
-                            appointment, _controllerDay.view);
-                        final bool isStartAppointment = !isTimeslotAppointment &&
-                            _isStartOfAppointmentView(appointment, details.date);
+                        final EventData appointment =
+                            details.appointments.first;
+                        final bool isTimeslotAppointment =
+                            _isTimeslotAppointmentView(
+                                appointment, _controllerDay.view);
+                        final bool isStartAppointment =
+                            !isTimeslotAppointment &&
+                                _isStartOfAppointmentView(
+                                    appointment, details.date);
                         final bool isEndAppointment = !isTimeslotAppointment &&
                             _isEndOfAppointmentView(
                                 appointment, details.date, _controllerDay.view);
@@ -850,8 +889,7 @@ class _EventIndexPageState extends State<EventIndexPage> {
                               MaterialPageRoute(
                                 builder: (context) => UpdateEventPage(
                                   event: appointment,
-                                  content:
-                                  titleToContent(appointment.title),
+                                  content: titleToContent(appointment.title),
                                 ),
                                 fullscreenDialog: true,
                               ),
@@ -869,26 +907,31 @@ class _EventIndexPageState extends State<EventIndexPage> {
                             ),
                             richMessage: WidgetSpan(
                                 child: Column(
-                                  crossAxisAlignment: CrossAxisAlignment.start,
-                                  children: [
-                                    Text(
-                                      _titleToolchip(appointment.title, appointment.unit),
-                                      style: const TextStyle(
-                                        fontSize: 14,
-                                        color: Colors.white,
-                                      ),
-                                    ),
-                                    Text('詳細：${appointment.description}',
-                                      style: const TextStyle(
-                                        fontSize: 14,
-                                        color: Colors.white,
-                                      ),
-                                    ),
-                                  ],
-                                )),
+                              crossAxisAlignment: CrossAxisAlignment.start,
+                              children: [
+                                Text(
+                                  _titleToolchip(
+                                      appointment.title, appointment.unit),
+                                  style: const TextStyle(
+                                    fontSize: 14,
+                                    color: Colors.white,
+                                  ),
+                                ),
+                                Text(
+                                  '詳細：${appointment.description}',
+                                  style: const TextStyle(
+                                    fontSize: 14,
+                                    color: Colors.white,
+                                  ),
+                                ),
+                              ],
+                            )),
                             child: Container(
-                              margin: EdgeInsets.fromLTRB(isStartAppointment ? 0 : 0, 0,
-                                  isEndAppointment ? 0 : 0, 0),
+                              margin: EdgeInsets.fromLTRB(
+                                  isStartAppointment ? 0 : 0,
+                                  0,
+                                  isEndAppointment ? 0 : 0,
+                                  0),
                               decoration: BoxDecoration(
                                 color: _isTitleToColorBox(
                                     appointment.title, appointment.unit),
@@ -902,8 +945,9 @@ class _EventIndexPageState extends State<EventIndexPage> {
                               alignment: Alignment.centerLeft,
                               child: Padding(
                                 padding: const EdgeInsets.only(left: 2.0),
-                                child: Text(displayTitle(appointment.title,
-                                    appointment.unit, appointment.start),
+                                child: Text(
+                                  displayTitle(appointment.title,
+                                      appointment.unit, appointment.start),
                                   style: const TextStyle(
                                     color: Colors.black,
                                     fontSize: 12,
@@ -924,7 +968,7 @@ class _EventIndexPageState extends State<EventIndexPage> {
       ),
     );
   }
-  
+
   String titleToContent(String title) {
     if (title == 'ミーティング' || title == '輪講') {
       return title;
@@ -951,175 +995,177 @@ class _EventIndexPageState extends State<EventIndexPage> {
 
   ///祝日(手打ち)
   List<DateTime> holidays = [
-    DateTime(2022,01,01),
-    DateTime(2022,01,10),
-    DateTime(2022,02,11),
-    DateTime(2022,02,23),
-    DateTime(2022,03,21),
-    DateTime(2022,04,29),
-    DateTime(2022,05,03),
-    DateTime(2022,05,04),
-    DateTime(2022,05,05),
-    DateTime(2022,07,18),
-    DateTime(2022,08,11),
-    DateTime(2022,09,19),
-    DateTime(2022,09,23),
-    DateTime(2022,10,10),
-    DateTime(2022,11,03),
-    DateTime(2022,11,23),
-    DateTime(2023,01,01),
-    DateTime(2023,01,02),
-    DateTime(2023,01,09),
-    DateTime(2023,02,11),
-    DateTime(2023,02,23),
-    DateTime(2023,03,21),
-    DateTime(2023,04,29),
-    DateTime(2023,05,03),
-    DateTime(2023,05,04),
-    DateTime(2023,05,05),
-    DateTime(2023,07,17),
-    DateTime(2023,08,11),
-    DateTime(2023,09,18),
-    DateTime(2023,09,23),
-    DateTime(2023,10,09),
-    DateTime(2023,11,03),
-    DateTime(2023,11,23),
-    DateTime(2024,01,01),
-    DateTime(2024,01,08),
-    DateTime(2024,02,11),
-    DateTime(2024,02,12),
-    DateTime(2024,02,23),
-    DateTime(2024,03,20),
-    DateTime(2024,04,29),
-    DateTime(2024,05,03),
-    DateTime(2024,05,04),
-    DateTime(2024,05,05),
-    DateTime(2024,05,06),
-    DateTime(2024,07,15),
-    DateTime(2024,08,11),
-    DateTime(2024,09,16),
-    DateTime(2024,09,22),
-    DateTime(2024,09,23),
-    DateTime(2024,10,14),
-    DateTime(2024,11,03),
-    DateTime(2024,11,23),
-    DateTime(2025,01,01),
-    DateTime(2025,01,13),
-    DateTime(2025,02,11),
-    DateTime(2025,02,23),
-    DateTime(2025,03,20),
-    DateTime(2025,04,29),
-    DateTime(2025,05,03),
-    DateTime(2025,05,04),
-    DateTime(2025,05,05),
-    DateTime(2025,05,06),
-    DateTime(2025,07,21),
-    DateTime(2025,08,11),
-    DateTime(2025,09,15),
-    DateTime(2025,09,23),
-    DateTime(2025,10,13),
-    DateTime(2025,11,03),
-    DateTime(2025,11,23),
-    DateTime(2025,11,24),
-    DateTime(2026,01,01),
-    DateTime(2026,01,12),
-    DateTime(2026,02,11),
-    DateTime(2026,02,23),
-    DateTime(2026,03,20),
-    DateTime(2026,04,29),
-    DateTime(2026,05,03),
-    DateTime(2026,05,04),
-    DateTime(2026,05,05),
-    DateTime(2026,05,06),
-    DateTime(2026,07,20),
-    DateTime(2026,08,11),
-    DateTime(2026,09,21),
-    DateTime(2026,09,22),
-    DateTime(2026,09,23),
-    DateTime(2026,10,12),
-    DateTime(2026,11,03),
-    DateTime(2026,11,23),
-    DateTime(2027,01,01),
-    DateTime(2027,01,11),
-    DateTime(2027,02,11),
-    DateTime(2027,02,23),
-    DateTime(2027,03,21),
-    DateTime(2027,03,22),
-    DateTime(2027,04,29),
-    DateTime(2027,05,03),
-    DateTime(2027,05,04),
-    DateTime(2027,05,05),
-    DateTime(2027,07,19),
-    DateTime(2027,08,11),
-    DateTime(2027,09,20),
-    DateTime(2027,09,23),
-    DateTime(2027,10,11),
-    DateTime(2027,11,03),
-    DateTime(2027,11,23),
+    DateTime(2022, 01, 01),
+    DateTime(2022, 01, 10),
+    DateTime(2022, 02, 11),
+    DateTime(2022, 02, 23),
+    DateTime(2022, 03, 21),
+    DateTime(2022, 04, 29),
+    DateTime(2022, 05, 03),
+    DateTime(2022, 05, 04),
+    DateTime(2022, 05, 05),
+    DateTime(2022, 07, 18),
+    DateTime(2022, 08, 11),
+    DateTime(2022, 09, 19),
+    DateTime(2022, 09, 23),
+    DateTime(2022, 10, 10),
+    DateTime(2022, 11, 03),
+    DateTime(2022, 11, 23),
+    DateTime(2023, 01, 01),
+    DateTime(2023, 01, 02),
+    DateTime(2023, 01, 09),
+    DateTime(2023, 02, 11),
+    DateTime(2023, 02, 23),
+    DateTime(2023, 03, 21),
+    DateTime(2023, 04, 29),
+    DateTime(2023, 05, 03),
+    DateTime(2023, 05, 04),
+    DateTime(2023, 05, 05),
+    DateTime(2023, 07, 17),
+    DateTime(2023, 08, 11),
+    DateTime(2023, 09, 18),
+    DateTime(2023, 09, 23),
+    DateTime(2023, 10, 09),
+    DateTime(2023, 11, 03),
+    DateTime(2023, 11, 23),
+    DateTime(2024, 01, 01),
+    DateTime(2024, 01, 08),
+    DateTime(2024, 02, 11),
+    DateTime(2024, 02, 12),
+    DateTime(2024, 02, 23),
+    DateTime(2024, 03, 20),
+    DateTime(2024, 04, 29),
+    DateTime(2024, 05, 03),
+    DateTime(2024, 05, 04),
+    DateTime(2024, 05, 05),
+    DateTime(2024, 05, 06),
+    DateTime(2024, 07, 15),
+    DateTime(2024, 08, 11),
+    DateTime(2024, 09, 16),
+    DateTime(2024, 09, 22),
+    DateTime(2024, 09, 23),
+    DateTime(2024, 10, 14),
+    DateTime(2024, 11, 03),
+    DateTime(2024, 11, 23),
+    DateTime(2025, 01, 01),
+    DateTime(2025, 01, 13),
+    DateTime(2025, 02, 11),
+    DateTime(2025, 02, 23),
+    DateTime(2025, 03, 20),
+    DateTime(2025, 04, 29),
+    DateTime(2025, 05, 03),
+    DateTime(2025, 05, 04),
+    DateTime(2025, 05, 05),
+    DateTime(2025, 05, 06),
+    DateTime(2025, 07, 21),
+    DateTime(2025, 08, 11),
+    DateTime(2025, 09, 15),
+    DateTime(2025, 09, 23),
+    DateTime(2025, 10, 13),
+    DateTime(2025, 11, 03),
+    DateTime(2025, 11, 23),
+    DateTime(2025, 11, 24),
+    DateTime(2026, 01, 01),
+    DateTime(2026, 01, 12),
+    DateTime(2026, 02, 11),
+    DateTime(2026, 02, 23),
+    DateTime(2026, 03, 20),
+    DateTime(2026, 04, 29),
+    DateTime(2026, 05, 03),
+    DateTime(2026, 05, 04),
+    DateTime(2026, 05, 05),
+    DateTime(2026, 05, 06),
+    DateTime(2026, 07, 20),
+    DateTime(2026, 08, 11),
+    DateTime(2026, 09, 21),
+    DateTime(2026, 09, 22),
+    DateTime(2026, 09, 23),
+    DateTime(2026, 10, 12),
+    DateTime(2026, 11, 03),
+    DateTime(2026, 11, 23),
+    DateTime(2027, 01, 01),
+    DateTime(2027, 01, 11),
+    DateTime(2027, 02, 11),
+    DateTime(2027, 02, 23),
+    DateTime(2027, 03, 21),
+    DateTime(2027, 03, 22),
+    DateTime(2027, 04, 29),
+    DateTime(2027, 05, 03),
+    DateTime(2027, 05, 04),
+    DateTime(2027, 05, 05),
+    DateTime(2027, 07, 19),
+    DateTime(2027, 08, 11),
+    DateTime(2027, 09, 20),
+    DateTime(2027, 09, 23),
+    DateTime(2027, 10, 11),
+    DateTime(2027, 11, 03),
+    DateTime(2027, 11, 23),
     DateTime(2028, 1, 1),
-    DateTime(2028, 1,10),
-    DateTime(2028, 2,11),
-    DateTime(2028, 2,23),
-    DateTime(2028, 3,20),
-    DateTime(2028, 4,29),
+    DateTime(2028, 1, 10),
+    DateTime(2028, 2, 11),
+    DateTime(2028, 2, 23),
+    DateTime(2028, 3, 20),
+    DateTime(2028, 4, 29),
     DateTime(2028, 5, 3),
     DateTime(2028, 5, 4),
     DateTime(2028, 5, 5),
-    DateTime(2028, 7,17),
-    DateTime(2028, 8,11),
-    DateTime(2028, 9,18),
-    DateTime(2028, 9,22),
-    DateTime(2028,10, 9),
-    DateTime(2028,11, 3),
-    DateTime(2028,11,23),
+    DateTime(2028, 7, 17),
+    DateTime(2028, 8, 11),
+    DateTime(2028, 9, 18),
+    DateTime(2028, 9, 22),
+    DateTime(2028, 10, 9),
+    DateTime(2028, 11, 3),
+    DateTime(2028, 11, 23),
     DateTime(2029, 1, 1),
     DateTime(2029, 1, 8),
-    DateTime(2029, 2,11),
-    DateTime(2029, 2,12),
-    DateTime(2029, 2,23),
-    DateTime(2029, 3,20),
-    DateTime(2029, 4,29),
-    DateTime(2029, 4,30),
+    DateTime(2029, 2, 11),
+    DateTime(2029, 2, 12),
+    DateTime(2029, 2, 23),
+    DateTime(2029, 3, 20),
+    DateTime(2029, 4, 29),
+    DateTime(2029, 4, 30),
     DateTime(2029, 5, 3),
     DateTime(2029, 5, 4),
     DateTime(2029, 5, 5),
-    DateTime(2029, 7,16),
-    DateTime(2029, 8,11),
-    DateTime(2029, 9,17),
-    DateTime(2029, 9,23),
-    DateTime(2029, 9,24),
-    DateTime(2029,10, 8),
-    DateTime(2029,11, 3),
-    DateTime(2029,11,23),
+    DateTime(2029, 7, 16),
+    DateTime(2029, 8, 11),
+    DateTime(2029, 9, 17),
+    DateTime(2029, 9, 23),
+    DateTime(2029, 9, 24),
+    DateTime(2029, 10, 8),
+    DateTime(2029, 11, 3),
+    DateTime(2029, 11, 23),
     DateTime(2030, 1, 1),
-    DateTime(2030, 1,14),
-    DateTime(2030, 2,11),
-    DateTime(2030, 2,23),
-    DateTime(2030, 3,20),
-    DateTime(2030, 4,29),
+    DateTime(2030, 1, 14),
+    DateTime(2030, 2, 11),
+    DateTime(2030, 2, 23),
+    DateTime(2030, 3, 20),
+    DateTime(2030, 4, 29),
     DateTime(2030, 5, 3),
     DateTime(2030, 5, 4),
     DateTime(2030, 5, 5),
     DateTime(2030, 5, 6),
-    DateTime(2030, 7,15),
-    DateTime(2030, 8,11),
-    DateTime(2030, 8,12),
-    DateTime(2030, 9,16),
-    DateTime(2030, 9,23),
-    DateTime(2030,10, 14),
-    DateTime(2030,11, 3),
-    DateTime(2030,11, 4),
-    DateTime(2030,11,23),
+    DateTime(2030, 7, 15),
+    DateTime(2030, 8, 11),
+    DateTime(2030, 8, 12),
+    DateTime(2030, 9, 16),
+    DateTime(2030, 9, 23),
+    DateTime(2030, 10, 14),
+    DateTime(2030, 11, 3),
+    DateTime(2030, 11, 4),
+    DateTime(2030, 11, 23),
   ];
 
   Color _getCellColor(DateTime date) {
     DateTime displayDate = _controller.displayDate!;
-    if (DateTime(date.year,date.month,1).isBefore(DateTime(displayDate.year,displayDate.month,displayDate.day))) {
+    if (DateTime(date.year, date.month, 1).isBefore(
+        DateTime(displayDate.year, displayDate.month, displayDate.day))) {
       return const Color(0xFFD6D6D6);
-    } else if (DateTime(date.year,date.month,1).isAfter(DateTime(displayDate.year,displayDate.month+1,0))){
+    } else if (DateTime(date.year, date.month, 1)
+        .isAfter(DateTime(displayDate.year, displayDate.month + 1, 0))) {
       return const Color(0xFFD6D6D6);
     } else {
-      if (holidays.contains(DateTime(date.year,date.month,date.day))) {
+      if (holidays.contains(DateTime(date.year, date.month, date.day))) {
         return Colors.red.shade100;
       } else {
         if (date.weekday == DateTime.sunday) {
@@ -1135,12 +1181,14 @@ class _EventIndexPageState extends State<EventIndexPage> {
 
   Color _getTextColor(DateTime date) {
     DateTime displayDate = _controller.displayDate!;
-    if (DateTime(date.year,date.month,1).isBefore(DateTime(displayDate.year,displayDate.month,displayDate.day))) {
+    if (DateTime(date.year, date.month, 1).isBefore(
+        DateTime(displayDate.year, displayDate.month, displayDate.day))) {
       return Colors.grey.shade600;
-    } else if (DateTime(date.year,date.month,1).isAfter(DateTime(displayDate.year,displayDate.month+1,0))){
+    } else if (DateTime(date.year, date.month, 1)
+        .isAfter(DateTime(displayDate.year, displayDate.month + 1, 0))) {
       return Colors.grey.shade600;
     } else {
-      if (holidays.contains(DateTime(date.year,date.month,date.day))) {
+      if (holidays.contains(DateTime(date.year, date.month, date.day))) {
         return Colors.red;
       } else {
         if (date.weekday == DateTime.sunday) {
@@ -1154,33 +1202,33 @@ class _EventIndexPageState extends State<EventIndexPage> {
     }
   }
 
+  //_isTitleToColorBox内のColorsに.withOpacity(0.3)をつけて色を透過
   Color _isTitleToColorBox(String title, String unit) {
     if (title == 'ミーティング') {
       if (unit == '全体') {
-        return Colors.purple.shade200;
+        return Colors.purple.withOpacity(0.3);
       } else if (unit == '個人') {
-        return Colors.deepPurple.shade200;
+        return Colors.deepPurple.withOpacity(0.3);
       } else if (unit == 'Web班') {
-        return Colors.cyan.shade200;
+        return Colors.cyan.withOpacity(0.3);
       } else if (unit == 'Net班') {
-        return Colors.amber.shade200;
-      } else if (unit == 'Grid班'){
-        return Colors.lightGreen.shade200;
+        return Colors.amber.withOpacity(0.3);
+      } else if (unit == 'Grid班') {
+        return Colors.lightGreen.withOpacity(0.3);
       } else if (unit == 'B4') {
-        return Colors.teal.shade200;
+        return Colors.teal.withOpacity(0.3);
       } else if (unit == 'M1') {
-        return Colors.orange.shade200;
+        return Colors.orange.withOpacity(0.3);
       } else if (unit == 'M2') {
-        return Colors.blueGrey.shade200;
+        return Colors.blueGrey.withOpacity(0.3);
       } else {
-        return Colors.red.shade200;
+        return Colors.red.withOpacity(0.3);
       }
     } else if (title == '輪講') {
-      return Colors.indigo.shade200;
+      return Colors.indigo.withOpacity(0.3);
     } else {
-      return Colors.pink.shade200;
+      return Colors.pink.withOpacity(0.3);
     }
-
   }
 
   Color _isTitleToColorBorder(String title, String unit) {
@@ -1193,7 +1241,7 @@ class _EventIndexPageState extends State<EventIndexPage> {
         return Colors.cyan;
       } else if (unit == 'Net班') {
         return Colors.amber;
-      } else if (unit == 'Grid班'){
+      } else if (unit == 'Grid班') {
         return Colors.lightGreen.shade400;
       } else if (unit == 'B4') {
         return Colors.teal;
@@ -1209,29 +1257,32 @@ class _EventIndexPageState extends State<EventIndexPage> {
     } else {
       return Colors.pink.shade400;
     }
-
   }
 
   /// Check whether the appointment placed inside the timeslot on day, week
   /// and work week views.
   bool _isTimeslotAppointmentView(EventData app, CalendarView? view) {
     return (view == CalendarView.day ||
-        view == CalendarView.week ||
-        view == CalendarView.workWeek) &&
+            view == CalendarView.week ||
+            view == CalendarView.workWeek) &&
         app.end.difference(app.start).inDays < 1;
   }
+
   /// Check the date values are equal based on day, month and year.
   bool _isSameDate(DateTime date1, DateTime date2) {
     return date1.year == date2.year &&
         date1.month == date2.month &&
         date1.day == date2.day;
   }
+
   /// Check the appointment view is start of an appointment.
   bool _isStartOfAppointmentView(EventData app, DateTime date) {
     return _isSameDate(app.start, date);
   }
+
   /// Check the appointment view is end of an appointment.
-  bool _isEndOfAppointmentView(EventData app, DateTime date, CalendarView? view) {
+  bool _isEndOfAppointmentView(
+      EventData app, DateTime date, CalendarView? view) {
     if (view == CalendarView.month ||
         view == CalendarView.timelineWeek ||
         view == CalendarView.timelineWorkWeek ||
@@ -1248,12 +1299,17 @@ class _EventIndexPageState extends State<EventIndexPage> {
 
       /// Current week start date.
       final DateTime weekStartDate = date.add(Duration(days: value));
-      DateTime weekEndDate = weekStartDate.add(const Duration(days: DateTime.daysPerWeek - 1));
-      weekEndDate = DateTime(weekEndDate.year, weekEndDate.month, weekEndDate.day, 23, 59, 59);
+      DateTime weekEndDate =
+          weekStartDate.add(const Duration(days: DateTime.daysPerWeek - 1));
+      weekEndDate = DateTime(
+          weekEndDate.year, weekEndDate.month, weekEndDate.day, 23, 59, 59);
 
       /// Check the appointment end date is on or before the week end date.
-      return weekEndDate.isAfter(app.start) || _isSameDate(app.end, weekEndDate);
-    } else if (view == CalendarView.schedule || view == CalendarView.timelineDay || view == CalendarView.day) {
+      return weekEndDate.isAfter(app.start) ||
+          _isSameDate(app.end, weekEndDate);
+    } else if (view == CalendarView.schedule ||
+        view == CalendarView.timelineDay ||
+        view == CalendarView.day) {
       /// In calendar day, timeline day and schedule views
       /// are rendered based on each day, so we need to check the builder
       /// date value with appointment end date value for identify
@@ -1267,9 +1323,7 @@ class _EventIndexPageState extends State<EventIndexPage> {
     }
     return false;
   }
-
 }
-
 
 /// An object to set the appointment collection data source to calendar, which
 /// used to map the custom appointment data to the calendar appointment, and
@@ -1286,25 +1340,20 @@ class EventDataSource extends CalendarDataSource {
     return _getEventData(index).id;
   }
 
-
   @override
   DateTime getStartTime(int index) {
     return _getEventData(index).start;
   }
-
 
   @override
   DateTime getEndTime(int index) {
     return _getEventData(index).end;
   }
 
-
   @override
   String getSubject(int index) {
     return _getEventData(index).title;
   }
-
-
 
   EventData _getEventData(int index) {
     final dynamic event = appointments![index];
@@ -1315,5 +1364,3 @@ class EventDataSource extends CalendarDataSource {
     return eventData;
   }
 }
-
-

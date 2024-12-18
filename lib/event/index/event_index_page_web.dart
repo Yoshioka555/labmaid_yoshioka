@@ -14,6 +14,8 @@ import '../../network/url.dart';
 import '../create/event_create_dialog.dart';
 import '../create/event_create_page.dart';
 
+//変更点
+//このページはコピペで
 //Web用に編集したカレンダーウィジェット
 
 class EventIndexPageWeb extends StatefulWidget {
@@ -222,6 +224,7 @@ class _EventIndexPageWebState extends State<EventIndexPageWeb> {
   }
 
   //ダミーデータ
+  /*
   void loadDummyData() {
     setState(() {
       events = [
@@ -305,13 +308,12 @@ class _EventIndexPageWebState extends State<EventIndexPageWeb> {
       ];
     });
   }
-
-
+  */
 
   Future<void> _fetchEvent() async {
     //ダミーデータの参照
-    loadDummyData();
-    /*
+    //loadDummyData();
+
     var uri = Uri.parse('${httpUrl}events');
 
     // GETリクエストを送信
@@ -337,7 +339,6 @@ class _EventIndexPageWebState extends State<EventIndexPageWeb> {
       // リクエストが失敗した場合の処理
       print('リクエストが失敗しました: ${response.statusCode}');
     }
-    */
   }
 
   Future<void> _fetchMyUserData() async {
@@ -1235,6 +1236,7 @@ class _EventIndexPageWebState extends State<EventIndexPageWeb> {
     }
   }
 
+  //_isTitleToColorBox内のColorsに.withOpacity(0.3)をつけて色を透過
   Color _isTitleToColorBox(String title, String unit) {
     if (title == 'ミーティング') {
       if (unit == '全体') {

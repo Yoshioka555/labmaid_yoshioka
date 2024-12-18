@@ -13,6 +13,9 @@ import '../create/attendance_create_dialog.dart';
 import '../create/attendance_create_page.dart';
 import '../update/attendance_update_page.dart';
 
+//変更点
+//コピペ
+
 class AttendanceIndexPageMonth extends StatefulWidget {
   const AttendanceIndexPageMonth({Key? key}) : super(key: key);
 
@@ -214,6 +217,7 @@ class _AttendanceIndexPageMonthState extends State<AttendanceIndexPageMonth> {
   }
 
   //ダミーデータ
+  /*
   void _loadDummyData() {
     setState(() {
       attendances = [
@@ -319,11 +323,12 @@ class _AttendanceIndexPageMonthState extends State<AttendanceIndexPageMonth> {
       ];
     });
   }
+  */
 
   Future<void> _fetchAttendance() async {
     //ダミーデータを参照
-    _loadDummyData();
-    /*
+    //_loadDummyData();
+
     var uri = Uri.parse('${httpUrl}attendances');
 
     // GETリクエストを送信
@@ -347,7 +352,6 @@ class _AttendanceIndexPageMonthState extends State<AttendanceIndexPageMonth> {
       // リクエストが失敗した場合の処理
       print('リクエストが失敗しました: ${response.statusCode}');
     }
-    */
   }
 
   Future<void> _fetchMyUserData() async {

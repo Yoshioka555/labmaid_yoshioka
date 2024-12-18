@@ -12,7 +12,7 @@ import '../../domain/user_data.dart';
 import '../../network/url.dart';
 
 //変更点
-//変更点が多いのでこのページはそのままコピペしてください
+//そのままコピペしてください
 //mobile版アテンダンスページの出席状況表示ページ
 
 class AttendanceManagementPage extends StatefulWidget {

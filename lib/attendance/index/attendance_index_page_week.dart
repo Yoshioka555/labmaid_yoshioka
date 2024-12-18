@@ -12,6 +12,9 @@ import '../../domain/attendance_data.dart';
 import '../../network/url.dart';
 import '../update/attendance_update_page.dart';
 
+//変更点
+//コピペ
+
 class AttendanceIndexPageWeek extends StatefulWidget {
   const AttendanceIndexPageWeek({Key? key}) : super(key: key);
 
@@ -225,6 +228,7 @@ class _AttendanceIndexPageWeekState extends State<AttendanceIndexPageWeek> {
   }
 
   //ダミーデータ
+  /*
   void _loadDummyData() {
     setState(() {
       attendances = [
@@ -330,12 +334,13 @@ class _AttendanceIndexPageWeekState extends State<AttendanceIndexPageWeek> {
       ];
     });
   }
+  */
 
   Future<void> _fetchMyUserData() async {
 
     //ダミーデータを参照
-    _loadDummyData();
-    /*
+    //_loadDummyData();
+
     final user = FirebaseAuth.instance.currentUser;
     final userId = user!.uid;
 
@@ -360,7 +365,6 @@ class _AttendanceIndexPageWeekState extends State<AttendanceIndexPageWeek> {
       // リクエストが失敗した場合の処理
       print('リクエストが失敗しました: ${responseUser.statusCode}');
     }
-    */
   }
 
   void viewChanged(ViewChangedDetails viewChangedDetails) {
@@ -708,7 +712,7 @@ class _AttendanceIndexPageWeekState extends State<AttendanceIndexPageWeek> {
 
   Color _isTitleToColorBox(String title) {
     if (title == '遅刻') {
-      return Colors.amber.withOpacity(0.4);
+      return Colors.orange.withOpacity(0.4);
     } else if (title == '欠席') {
       return Colors.red.withOpacity(0.4);
     } else {

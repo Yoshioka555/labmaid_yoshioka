@@ -6,6 +6,9 @@ import '../gemini/gemini_chat_page.dart';
 import '../geo_location/location_member_index.dart';
 import '../header_footer_drawer/drawer.dart';
 
+//変更点
+//コピペで
+
 //WEB用の出席管理ページ
 
 class AttendancePageWeb extends StatelessWidget {
@@ -16,8 +19,15 @@ class AttendancePageWeb extends StatelessWidget {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
+        backgroundColor: Colors.green[100],
         centerTitle: false,
-        title: const DoorStatusAppbar(),
+        title: const Row(
+          mainAxisAlignment: MainAxisAlignment.spaceBetween,
+          children: [
+            Text('Attendance Management'),
+            DoorStatusAppbar(),
+          ],
+        ),
         //Gemini AI Page への遷移
         //仮でここに置いています
         actions: [
