@@ -13,6 +13,9 @@ import '../network/url.dart';
 import 'create_group_chat_room_page.dart';
 import 'package:http/http.dart' as http;
 
+//変更点
+//コピペで
+
 class ChatRoomListPage extends StatefulWidget {
   const ChatRoomListPage({Key? key}) : super(key: key);
 
@@ -176,7 +179,6 @@ class _ChatRoomListPage extends State<ChatRoomListPage> {
     return DefaultTabController(
       length: 3,
       child: Scaffold(
-        backgroundColor: Colors.white,
         appBar: AppBar(
           actions: [
             Padding(
@@ -197,10 +199,7 @@ class _ChatRoomListPage extends State<ChatRoomListPage> {
               ),
             ),
           ],
-          backgroundColor: Colors.orange,
-          iconTheme: const IconThemeData(
-            color: Colors.white,
-          ),
+          backgroundColor: Colors.orange[300],
           centerTitle: false,
           elevation: 0.0,
           title: const DoorStatusAppbar(),

@@ -7,6 +7,9 @@ import '../geo_location/location_member_index.dart';
 
 //作成した研究室の地図UIです
 
+//変更点
+//コピペで
+
 class MemberLocation extends StatelessWidget {
   const MemberLocation({super.key});
 
@@ -14,10 +17,7 @@ class MemberLocation extends StatelessWidget {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        iconTheme: const IconThemeData(
-          color: Colors.white,
-        ),
-        backgroundColor: Colors.teal,
+        backgroundColor: Colors.teal[300],
         centerTitle: false,
         elevation: 0.0,
         title: const DoorStatusAppbar(),

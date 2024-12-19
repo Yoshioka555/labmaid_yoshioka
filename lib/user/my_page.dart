@@ -24,7 +24,6 @@ class _MyPageState extends State<MyPage> {
     return ChangeNotifierProvider<MyModel>(
       create: (_) => MyModel()..fetchMyModel(),
       child: Scaffold(
-        backgroundColor: Colors.white,
         appBar: AppBar(
           actions: [
             Padding(
@@ -55,11 +54,9 @@ class _MyPageState extends State<MyPage> {
             ),
           ],
           //変更点
-          //backgroundColorをpinkに
-          backgroundColor: Colors.pink[200],
-          iconTheme: const IconThemeData(
-            color: Colors.white,
-          ),
+          //バックグラウンドカラーをpinkに
+          //アイコンカラーの設定を消す
+          backgroundColor: Colors.pink[100],
           centerTitle: false,
           elevation: 0.0,
           title: const DoorStatusAppbar(),
